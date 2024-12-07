@@ -1,0 +1,194 @@
+/* 基本样式重置 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: 'Roboto', sans-serif;
+  height: 100%;
+  background-color: #121212; /* 主背景色 */
+  color: #fff; /* 默认字体颜色 */
+  overflow: hidden; /* 防止滚动条出现 */
+}
+
+/* 页面加载动画容器 */
+.loader-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(18, 18, 18, 0.9); /* 深色背景 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 1s ease-in-out;
+  overflow: hidden;
+}
+
+/* 顶部两条细线，复杂动画 */
+.top-line {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.1) 10%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(255, 255, 255, 0.1) 90%
+  );
+  background-size: 200% 100%; /* 使渐变更加流畅 */
+  animation: complexGradientMove 3s infinite;
+  filter: blur(1px); /* 添加模糊效果 */
+}
+
+.top-line:nth-child(1) {
+  top: 10px; /* 第一条线的位置 */
+}
+
+.top-line:nth-child(2) {
+  top: 20px; /* 第二条线的位置 */
+  animation-delay: 0.5s; /* 增加延迟 */
+}
+
+/* 复杂渐变动画 */
+@keyframes complexGradientMove {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 0%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+/* 光点动画效果 */
+.top-line::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -10px;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 50%;
+  animation: lightDotMove 3s infinite;
+}
+
+@keyframes lightDotMove {
+  0% {
+    transform: translateX(0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateX(calc(100vw - 20px));
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 0.5;
+  }
+}
+
+/* 进度条 */
+.progress-bar {
+  width: 200px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  overflow: hidden;
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+}
+
+.progress {
+  width: 0;
+  height: 100%;
+  background: #fff;
+  transition: width 2s ease-out;
+}
+
+/* 渐变条动画 */
+.gradient-bar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150px;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.3));
+  transform: translate(-50%, -50%);
+  animation: gradientMove 2s infinite;
+}
+
+@keyframes gradientMove {
+  0% {
+    transform: translateX(-150px);
+  }
+  100% {
+    transform: translateX(150px);
+  }
+}
+
+/* 左上到右下的斜线样式 */
+.diagonal-line {
+  position: absolute;
+  top: 80%;        /* 从页面的底部往上开始 */
+  left: 0;       /* 从页面的左侧开始 */
+  width: 300px;  /* 控制斜线长度 */
+  height: 4px;   /* 线条的粗细 */
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.3)
+  );
+  transform: rotate(45deg);  /* 旋转45度，形成斜线 */
+  transform-origin: top left; /* 旋转的基准点在左上角 */
+  animation: diagonalLineMove 3s infinite;
+}
+
+.diagonal-line:nth-child(1) {
+  top: 5px;   /* 第一条线的位置 */
+  left: 5px;  /* 第一条线的起始点 */
+}
+
+.diagonal-line:nth-child(2) {
+  top: 12px;   /* 第二条线的位置 */
+  left: 12px;  /* 第二条线的起始点 */
+  animation-delay: 0.5s;  /* 第二条线延迟启动动画 */
+}
+
+/* 加载文字样式 */
+.loading-text {
+  position: absolute;
+  bottom: 30px; /* 与进度条垂直对齐 */
+  right: 250px; /* 与进度条左边保持一定间距 */
+  font-family: 'Roboto', sans-serif; /* 字体设置 */
+  font-size: 14px; /* 小字号 */
+  color: #fff; /* 白色文字 */
+  letter-spacing: 1.2px; /* 字母间距 */
+  opacity: 0.9; /* 半透明效果 */
+  text-transform: uppercase; /* 全部大写 */
+}
+
+/* 中间的艺术文字 "CatBlog" */
+.artistic-text {
+  position: absolute;
+  top: 50%;         /* 垂直居中 */
+  left: 50%;        /* 水平居中 */
+  transform: translate(-50%, -50%) rotate(-5deg); /* 调整位置和稍微旋转 */
+  font-family: 'Roboto', sans-serif;  /* 使用Roboto字体 */
+  font-size: 50px;  /* 设置字体大小 */
+  font-weight: bold; /* 加粗字体 */
+  color: #fff;  /* 字体颜色为白色 */
+  letter-spacing: 2px; /* 字母间距 */
+  text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.2), 0 0 25px rgba(255, 255, 255, 0.5); /* 添加阴影效果 */
+  font-style: italic; /* 使字体有点斜体效果 */
+}
