@@ -3,11 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>加载中 - CatBlog</title>
+  <title>Loading - CatBlog</title>
   <link rel="stylesheet" href="css/index.css">
   <script src="js/index.js" defer></script>
 </head>
 <body>
+  <!-- 包裹所有内容的容器 -->
+  <div class="page-wrapper">
     <div class="loader-wrapper">
         <!-- 顶部的渐变条 -->
         <div class="top-line"></div>
@@ -25,44 +27,12 @@
         <div class="progress-bar">
           <div class="progress"></div>
         </div>
-      </div>
-      
-  <!-- 背景音乐 -->
-  <audio id="background-music" loop muted>
-    <source src="music/絆.mp3" type="audio/mp3">
-    Your browser does not support the audio element.
-  </audio>
-
-  <script>
-    window.addEventListener('load', () => {
-      const progress = document.querySelector('.progress');
-      const loaderWrapper = document.querySelector('.loader-wrapper');
-      const backgroundMusic = document.getElementById('background-music');
+    </div>
   
-      // 播放背景音乐
-      backgroundMusic.play();
-      backgroundMusic.muted = false;  // 解除静音
-
-      // 模拟加载进度
-      let progressWidth = 0;
-      const progressInterval = setInterval(() => {
-        progressWidth += 2; // 每次增加2%的进度
-        progress.style.width = progressWidth + '%';
-    
-        if (progressWidth >= 100) {
-          clearInterval(progressInterval);
-    
-          // 加载完成后，延迟2秒跳转到主页
-          setTimeout(() => {
-            loaderWrapper.style.opacity = 0;  // 淡出动画
-            setTimeout(() => {
-              window.location.href = 'homepage.html'; // 跳转到主页
-            }, 1000); // 延迟1秒，让淡出动画生效
-          }, 1000); // 延迟1秒
-        }
-      }, 50); // 每50ms增加进度
-
-    });
-  </script>
+    <!-- 背景音乐 -->
+    <audio id="background-music" loop muted>
+      <source src="music/絆.mp3" type="audio/mp3">
+    </audio>
+  </div>
 </body>
 </html>

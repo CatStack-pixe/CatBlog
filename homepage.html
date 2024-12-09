@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,8 @@
   <!-- 粒子背景 -->
   <canvas id="background"></canvas>
 
-  <header>
+  <!-- 顶部导航栏 -->
+  <header id="header">
     <nav>
       <ul>
         <li><a href="homepage.html">首页</a></li>
@@ -23,20 +24,20 @@
   </header>
 
   <main>
-    <section class="hero">
+    <!-- Hero Section -->
+    <section class="hero fade-in" id="hero">
       <h1>欢迎来到CatBlog</h1>
       <p>记录生活点滴，分享校园精彩瞬间。</p>
     </section>
 
-    <section class="latest-articles">
+    <!-- 最新文章 Section -->
+    <section class="latest-articles fade-in" id="latest-articles">
       <h2>最新文章</h2>
-      <div id="articles-container">
-
-
-      </div>
+      <div id="articles-container"></div>
     </section>
 
-    <section class="features">
+    <!-- 特性介绍 Section -->
+    <section class="features fade-in" id="features">
       <h2>导言</h2>
       <div class="features-container">
         <div class="feature-card">
