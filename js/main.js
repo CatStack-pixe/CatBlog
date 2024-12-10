@@ -47,25 +47,54 @@ window.addEventListener('scroll', function() {
 
 
 document.addEventListener("DOMContentLoaded", () => {
-  // 页面滚动时触发渐入效果
-  const fadeElements = document.querySelectorAll('.fade-in');
+  // 获取所有需要自动滚动的组件
+  const sections = document.querySelectorAll(".auto-scroll-section");
   
-  const isElementInView = (element) => {
-    const rect = element.getBoundingClientRect();
-    return rect.top >= 0 && rect.bottom <= window.innerHeight;
+  let isScrolling = false;
+
+  const debounceScroll = (callback, delay) => {
+    let timeout;
+    return () => {
+      clearTimeout(timeout);
+      timeout = setTimeout(callback, delay);
+    };
   };
 
-  const handleScroll = () => {
-    fadeElements.forEach(element => {
-      if (isElementInView(element)) {
-        element.classList.add('visible');
+  const findClosestSection = () => {
+    let closestSection = null;
+    let closestDistance = Infinity;
+
+    sections.forEach((section) => {
+      const rect = section.getBoundingClientRect();
+      const distance = Math.abs(rect.top);
+      if (distance < closestDistance) {
+        closestSection = section;
+        closestDistance = distance;
       }
     });
+
+    return closestSection;
   };
 
-  window.addEventListener('scroll', handleScroll);
-  handleScroll(); // 初次加载时检查元素是否已在视野中
+  const handleScroll = debounceScroll(() => {
+    if (isScrolling) return;
+    const closestSection = findClosestSection();
+    if (closestSection) {
+      isScrolling = true;
+      closestSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+      setTimeout(() => {
+        isScrolling = false;
+      }, 800); // 防止过于频繁的触发
+    }
+  }, 100);
+
+  // 监听滚动事件
+  window.addEventListener("scroll", handleScroll);
 });
+
 
 document.addEventListener('DOMContentLoaded', function() {
   const hero = document.getElementById('hero');
@@ -73,3 +102,10 @@ document.addEventListener('DOMContentLoaded', function() {
     hero.classList.add('fade-in');
   }
 });
+
+const backgroundMusic = document.getElementById('background-music');
+
+// 播放背景音乐
+backgroundMusic.play();
+backgroundMusic.muted = false; // 解除静音
+

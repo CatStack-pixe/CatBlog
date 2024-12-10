@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CatBlog</title>
   <link rel="stylesheet" href="css/homepage.css">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script src="js/particles.js" crossorigin="anonymous"></script>
 </head>
 <body>
   <!-- 粒子背景 -->
@@ -25,19 +25,19 @@
 
   <main>
     <!-- Hero Section -->
-    <section class="hero fade-in" id="hero">
+    <section class="section hero fade-in" id="hero">
       <h1>欢迎来到CatBlog</h1>
       <p>记录生活点滴，分享校园精彩瞬间。</p>
     </section>
 
     <!-- 最新文章 Section -->
-    <section class="latest-articles fade-in" id="latest-articles">
+    <section class="section latest-articles fade-in" id="latest-articles">
       <h2>最新文章</h2>
       <div id="articles-container"></div>
     </section>
 
     <!-- 特性介绍 Section -->
-    <section class="features fade-in" id="features">
+    <section class="section features fade-in" id="features">
       <h2>导言</h2>
       <div class="features-container">
         <div class="feature-card">
@@ -65,6 +65,31 @@
 
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
+  <audio id="background-music" loop>
+    <source src="music/絆.mp3" type="audio/mp3">
+  </audio>
 
+  <script>
+    // 自动对齐组件 JavaScript 实现
+    document.addEventListener('DOMContentLoaded', () => {
+      const sections = document.querySelectorAll('.section'); // 获取所有需要对齐的组件
+      let timeout;
+
+      window.addEventListener('scroll', () => {
+        if (timeout) clearTimeout(timeout);
+
+        // 延迟处理，确保用户完成滚动后自动对齐
+        timeout = setTimeout(() => {
+          const closest = Array.from(sections).reduce((closestSection, section) => {
+            const rect = section.getBoundingClientRect();
+            const offset = Math.abs(rect.top);
+            return offset < Math.abs(closestSection.top) ? { section, top: rect.top } : closestSection;
+          }, { section: sections[0], top: Infinity });
+
+          closest.section.scrollIntoView({ behavior: 'smooth' }); // 平滑滚动到最近的组件
+        }, 100);
+      });
+    });
+  </script>
 </body>
 </html>

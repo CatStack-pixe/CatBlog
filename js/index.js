@@ -2,11 +2,6 @@ window.addEventListener('load', () => {
   const progress = document.querySelector('.progress');
   const loaderWrapper = document.querySelector('.loader-wrapper');
   const pageWrapper = document.querySelector('.page-wrapper');
-  const backgroundMusic = document.getElementById('background-music');
-
-  // 播放背景音乐
-  backgroundMusic.play();
-  backgroundMusic.muted = false; // 解除静音
 
   // 模拟加载进度
   let progressWidth = 0;
