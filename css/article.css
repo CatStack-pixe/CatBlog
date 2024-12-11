@@ -1,0 +1,134 @@
+/* 全局样式 */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background: #202020; /* 深灰背景 */
+  color: #f0f0f0;       /* 浅灰字体 */
+}
+
+/* 顶部导航栏 */
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8); /* 黑色背景 */
+  color: #fff;
+  z-index: 1000; /* 确保导航栏在最上面 */
+  padding: 10px 20px;
+  opacity: 1; /* 初始显示导航栏 */
+  transition: opacity 0.3s ease-in-out; /* 渐变效果 */
+}
+
+#header nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#header nav ul li {
+  margin: 0 15px;
+}
+
+#header nav ul li a {
+  color: #fff; /* 设置链接颜色 */
+  text-decoration: none;
+  font-size: 18px;
+  transition: color 0.3s;
+}
+
+#header nav ul li a:hover {
+  color: #00d1b2; /* 绿色/蓝绿色 */
+}
+/* 渐入效果 */
+.fade-in {
+  animation: fadeIn 1.5s ease-out;
+}
+
+/* 渐入动画 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+main {
+  margin-top: 80px;
+  padding: 20px;
+}
+
+.article {
+  background: #333;  /* 深灰背景 */
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.article h1 {
+  text-align: center;
+  color: #0073e6;
+  font-size: 28px;
+}
+
+.article h2 {
+  color: #fff;
+  font-size: 22px;
+  margin-top: 20px;
+}
+
+.article p {
+  line-height: 1.6;
+  margin: 10px 0;
+}
+
+footer {
+  text-align: center;
+  background: #101010;  /* 更深的背景 */
+  color: white;
+  padding: 10px 0;
+}
+
+.article h1:hover {
+  color: #ff5722; /* 鼠标悬停时改变颜色 */
+  transform: scale(1.05); /* 放大效果 */
+  transition: all 0.3s ease;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  header nav ul {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  header nav ul li {
+    margin: 10px 0;
+  }
+
+  .article {
+    padding: 15px;
+    width: 100%;
+  }
+
+  .article h1 {
+    font-size: 22px;  /* 更适合小屏 */
+  }
+
+  .article h2 {
+    font-size: 18px;  /* 更适合小屏 */
+  }
+
+  .article p {
+    font-size: 16px;  /* 更适合小屏 */
+  }
+}
